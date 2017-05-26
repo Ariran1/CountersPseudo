@@ -120,7 +120,9 @@ var CountersPseudo = function () {
         value: function __calculate() {
             this.start();
             var intervalTime = Math.random() * 15e3;
-            if (this.progressValue < 0.5) intervalTime * 1.3;
+            if (this.progressValue < 0.7) intervalTime * 2;
+            if (this.progressValue < 0.5) intervalTime * 4;
+            if (this.progressValue < 0.3) intervalTime * 6;
 
             switch (true) {
                 case this.startProgressValue <= 1 && this.startProgressValue > 0.7:
@@ -147,7 +149,7 @@ var CountersPseudo = function () {
                     this.TimeOut = setTimeout(function () {
                         this.items--;
                         this.__calculate();
-                    }.bind(this), intervalTime * 15);
+                    }.bind(this), intervalTime * 7);
                     break;
                 case this.startProgressValue <= 0.2 && this.startProgressValue > 0.03:
 
@@ -157,7 +159,7 @@ var CountersPseudo = function () {
                     this.TimeOut = setTimeout(function () {
                         this.items--;
                         this.__calculate();
-                    }.bind(this), intervalTime * 25);
+                    }.bind(this), intervalTime * 10);
                     break;
 
                 default:
@@ -224,7 +226,7 @@ var CountersPseudo = function () {
         key: 'text',
         value: function text(element) {
             var items = Math.round(this.maxItems * this.progressValue);
-            element.innerHTML = items < 21 ? 21 : items;
+            element.innerHTML = items < 3 ? 3 : items;
         }
     }]);
 
