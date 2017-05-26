@@ -120,9 +120,15 @@ var CountersPseudo = function () {
         value: function __calculate() {
             this.start();
             var intervalTime = Math.random() * 15e3;
-            if (this.progressValue < 0.7) intervalTime * 2;
-            if (this.progressValue < 0.5) intervalTime * 4;
-            if (this.progressValue < 0.3) intervalTime * 6;
+            if (this.progressValue < 0.7) {
+                intervalTime * 2;
+            }
+            if (this.progressValue < 0.5) {
+                intervalTime * 4;
+            }
+            if (this.progressValue < 0.3) {
+                intervalTime * 6;
+            }
 
             switch (true) {
                 case this.startProgressValue <= 1 && this.startProgressValue > 0.7:
