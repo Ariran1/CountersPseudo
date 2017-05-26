@@ -91,9 +91,18 @@ var CountersPseudo = function () {
             var matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
             return matches ? decodeURIComponent(matches[1]) : undefined;
         }
-        getCookie('CounterPseudo');
 
-        this.items = this.startItems = getCookie('CounterPseudo') ? getCookie('CounterPseudo') : this.maxItems - this.hour * this.maxItems / 30;
+        var cookie = function () {
+
+            var a = +getCookie('CounterPseudo');
+
+            if (!a || a > this.maxItems) {
+                a = this.maxItems - this.hour * this.maxItems / 30;
+            }
+            return a;
+        }.bind(this);
+
+        this.items = this.startItems = cookie();
 
         this.startProgressValue = this.items / this.startItems;
 
@@ -121,13 +130,13 @@ var CountersPseudo = function () {
             this.start();
             var intervalTime = Math.random() * 15e3;
             if (this.progressValue < 0.7) {
-                intervalTime * 2;
+                intervalTime = intervalTime * 2;
             }
             if (this.progressValue < 0.5) {
-                intervalTime * 4;
+                intervalTime = intervalTime * 4;
             }
             if (this.progressValue < 0.3) {
-                intervalTime * 6;
+                intervalTime = intervalTime * 6;
             }
 
             switch (true) {
