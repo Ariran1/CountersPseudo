@@ -136,7 +136,7 @@ var CountersPseudo = function () {
                 intervalTime = intervalTime * 4;
             }
             if (this.progressValue < 0.3) {
-                intervalTime = intervalTime * 6;
+                intervalTime = intervalTime * 2;
             }
 
             switch (true) {
